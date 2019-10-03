@@ -3,17 +3,27 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+@javax.persistence.Entity
 public class Town {
 
 	private int id;
 	private Department department;
 	private String name;
 	private List<Sport> listOfSports = new ArrayList<Sport>();
-	
-	
+
+	public Town() {
+		super();
+	}
 	/**
 	 * @return the id
 	 */
+	@Id
+    @GeneratedValue
 	public int getId() {
 		return id;
 	}
@@ -26,6 +36,7 @@ public class Town {
 	/**
 	 * @return the department
 	 */
+//	@OneToOne /*(mappedBy = "town", cascade = CascadeType.PERSIST)*/
 	public Department getDepartment() {
 		return department;
 	}

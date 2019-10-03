@@ -1,5 +1,9 @@
 package domain;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@javax.persistence.Entity
 public class Sport {
 
 	private int id;
@@ -8,9 +12,14 @@ public class Sport {
 	private String description;
 
 	
+	public Sport() {
+		super();
+	}
 	/**
 	 * @return the id
 	 */
+	@Id
+    @GeneratedValue
 	public int getId() {
 		return id;
 	}

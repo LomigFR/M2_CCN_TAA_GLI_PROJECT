@@ -1,12 +1,39 @@
 package domain;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@javax.persistence.Entity
 public class Constraint {
 
+	private int id;
 	private String name;
 	private int swell;
 	private int minWindStrenght;
 	private int maxWindStrenght;
+	private Boolean rain;
+	private Boolean sun;
+	private User user;
 	
+	public Constraint() {
+		super();
+	}
+	
+	/**
+	 * @return the id
+	 */
+	@Id
+	@GeneratedValue
+	public int getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	/**
 	 * @return the name
@@ -55,6 +82,43 @@ public class Constraint {
 	 */
 	public void setMaxWindStrenght(int maxWindStrenght) {
 		this.maxWindStrenght = maxWindStrenght;
+	}
+	/**
+	 * @return the rain
+	 */
+	public Boolean getRain() {
+		return rain;
+	}
+	/**
+	 * @param rain the rain to set
+	 */
+	public void setRain(Boolean rain) {
+		this.rain = rain;
+	}
+	/**
+	 * @return the sun
+	 */
+	public Boolean getSun() {
+		return sun;
+	}
+	/**
+	 * @param sun the sun to set
+	 */
+	public void setSun(Boolean sun) {
+		this.sun = sun;
+	}
+	/**
+	 * @return the user
+	 */
+//	@OneToOne
+	public User getUser() {
+		return user;
+	}
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 }

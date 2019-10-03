@@ -3,17 +3,27 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@javax.persistence.Entity
 public class Region {
 
 	private int id;
 	private String name;
 	private List<Department> listOfDepartments = new ArrayList<Department>();
 	
-	
+	public Region() {
+		super();
+	}
 	
 	/**
 	 * @return the id
 	 */
+	@Id
+	@GeneratedValue
 	public int getId() {
 		return id;
 	}
@@ -35,9 +45,11 @@ public class Region {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	/**
 	 * @return the listOfDepartments
 	 */
+//	@OneToMany(mappedBy = "region", cascade = CascadeType.PERSIST)
 	public List<Department> getListOfDepartments() {
 		return listOfDepartments;
 	}

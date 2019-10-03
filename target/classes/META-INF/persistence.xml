@@ -57,9 +57,9 @@
 			<property name="hibernate.connection.driver_class"
 				value="com.mysql.jdbc.Driver" />
 			<property name="hibernate.connection.password"
-				value="yourpass" />
+				value="mypass123" />
 			<property name="hibernate.connection.url"
-				value="jdbc:mysql://localhost/testjpa" />
+				value="jdbc:mysql://172.17.0.2:3306/taa_gli_project" />
 			<property name="hibernate.connection.username" value="root" />
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQLDialect" />

@@ -3,6 +3,14 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
+
+@javax.persistence.Entity
 public class User {
 
 	private int id;
@@ -14,11 +22,16 @@ public class User {
 	private List<Sport> listOfFavoriteSports = new ArrayList<Sport>();
 	private List<Town> listOfFavoriteTowns = new ArrayList<Town>();
 	private List<Constraint> listOfConstraints = new ArrayList<Constraint>();
-	
+
+	public User() {
+		
+	}
 	
 	/**
 	 * @return the id
 	 */
+	@Id
+    @GeneratedValue
 	public int getId() {
 		return id;
 	}
@@ -91,6 +104,8 @@ public class User {
 	/**
 	 * @return the listOfFavoriteSports
 	 */
+//	@OneToMany
+//	@IgnoreForBinding
 	public List<Sport> getListOfFavoriteSports() {
 		return listOfFavoriteSports;
 	}
@@ -103,18 +118,24 @@ public class User {
 	/**
 	 * @return the listOfFavoriteTowns
 	 */
+//	@OneToMany
+//	@IgnoreForBinding
 	public List<Town> getListOfFavoriteTowns() {
 		return listOfFavoriteTowns;
 	}
+	
 	/**
 	 * @param listOfFavoriteTowns the listOfFavoriteTowns to set
 	 */
 	public void setListOfFavoriteTowns(List<Town> listOfFavoriteTowns) {
 		this.listOfFavoriteTowns = listOfFavoriteTowns;
 	}
+	
 	/**
 	 * @return the listOfConstraints
 	 */
+//	@OneToMany
+//	@IgnoreForBinding
 	public List<Constraint> getListOfConstraints() {
 		return listOfConstraints;
 	}
