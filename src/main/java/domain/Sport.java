@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Sport {
@@ -67,6 +68,7 @@ public class Sport {
 	 * @return the listOfTowns
 	 */
 	@OneToMany
+	//@Transient
 	public List<Town> getListOfTowns() {
 		return listOfTowns;
 	}

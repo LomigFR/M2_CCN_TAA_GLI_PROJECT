@@ -7,8 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -21,7 +20,7 @@ public class User {
 	private String email;
 	private List<Sport> listOfFavoriteSports = new ArrayList<Sport>();
 	private List<Town> listOfFavoriteTowns = new ArrayList<Town>();
-	private List<Constraint> listOfConstraints = new ArrayList<Constraint>();
+	private List<domain.Preference> listOfConstraints = new ArrayList<domain.Preference>();
 
 	public User() {}
 
@@ -145,15 +144,14 @@ public class User {
 	 * @return the listOfConstraints
 	 */
 	@OneToMany
-	@IgnoreForBinding
-	public List<Constraint> getListOfConstraints() {
+	public List<domain.Preference> getListOfConstraints() {
 		return listOfConstraints;
 	}
 
 	/**
 	 * @param listOfConstraints the listOfConstraints to set
 	 */
-	public void setListOfConstraints(List<Constraint> listOfConstraints) {
+	public void setListOfConstraints(List<domain.Preference> listOfConstraints) {
 		this.listOfConstraints = listOfConstraints;
 	}
 }

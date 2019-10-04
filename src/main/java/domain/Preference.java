@@ -3,10 +3,10 @@ package domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Constraint {
+public class Preference {
 
 	private int id;
 	private String name;
@@ -17,7 +17,7 @@ public class Constraint {
 	private Boolean sun;
 	private User user;
 
-	public Constraint() {}
+	public Preference() {}
 
 	/**
 	 * @return the id
@@ -122,7 +122,7 @@ public class Constraint {
 	/**
 	 * @return the user
 	 */
-	@OneToOne
+	@ManyToOne
 	public User getUser() {
 		return user;
 	}
