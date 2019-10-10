@@ -5,6 +5,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import domain.Sport;
+import domain.User;
+
 public class JpaTest {
 
 	private EntityManager manager;
@@ -24,7 +27,7 @@ public class JpaTest {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("mysql");
 		EntityManager manager = factory.createEntityManager();
 
-//		JpaTest test = new JpaTest(EntityManagerHelper.getEntityManager());
+		JpaTest test = new JpaTest(EntityManagerHelper.getEntityManager());
 
 		/**
 		 * Open a transaction
@@ -36,11 +39,13 @@ public class JpaTest {
 		 * Create entities Employees and Departments (instanciate jobs objects +
 		 * persistance O/R : create a recording in the DB)
 		 */
-//		try {
-//			test.createEmployees();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		try {
+			test.createUsers();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+//		test.createUsers();
 
 		/**
 		 * Close the transaction
@@ -67,26 +72,26 @@ public class JpaTest {
 	/**
 	 * Create job datas
 	 */
-//	private void createUser() {
-//		int numOfEmployees = manager.createQuery("Select a From Employee a", User.class).getResultList().size();
-//		if (numOfEmployees == 0) {
-//
-//			Department department1 = new Department("java");
-//			Department department2 = new Department("sql");
-//			Department department3 = new Department("php");
-//
-//			manager.persist(department1);
-//			manager.persist(department2);
-//			manager.persist(department3);
-//
+	private void createUsers() {
+		int numOfUsers = manager.createQuery("Select u From User u", User.class).getResultList().size();
+		if (numOfUsers == 0) {
+
+//			User user1 = new User();			
+//			user1.setEmail("user@email.fr");
+//			Sport sport1 = new Sport();
+//			sport1.setName("Tennis");
+//			user1.addSport(sport1);
+			manager.persist(new User());
+//			manager.persist(sport1);
+			
 //			manager.persist(new Employee("Jakab Gipsz", department1));
 //			manager.persist(new Employee("Captain Nemo", department1));
 //			manager.persist(new Employee("Tintin", department2));
 //			manager.persist(new Employee("Milou", department2));
 //			manager.persist(new Employee("Bill", department3));
 //			manager.persist(new Employee("Bill", department1));
-//		}
-//	}
+		}
+	}
 
 	/**
 	 * Retrieve the list of all the employees

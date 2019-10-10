@@ -85,7 +85,7 @@ public class Sport {
 	 */
 	@OneToMany
 	public List<User> getListOfUsers() {
-		return listOfUsers;
+		return listOfUsers;	
 	}
 
 	/**
@@ -94,5 +94,4 @@ public class Sport {
 	public void setListOfUsers(List<User> listOfUsers) {
 		this.listOfUsers = listOfUsers;
 	}
-
 }

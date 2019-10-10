@@ -154,4 +154,12 @@ public class User {
 	public void setListOfConstraints(List<domain.Preference> listOfConstraints) {
 		this.listOfConstraints = listOfConstraints;
 	}
+	
+	/**
+	 * 
+	 * @param sport
+	 */
+	public void addSport(Sport sport) {
+		listOfFavoriteSports.add(sport);
+	}
 }
