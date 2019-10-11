@@ -27,30 +27,18 @@ public class JpaTest {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("mysql");
 		EntityManager manager = factory.createEntityManager();
 
-		JpaTest test = new JpaTest(EntityManagerHelper.getEntityManager());
+		JpaTest test = new JpaTest(manager);
+		test.createUsers();
 
-		/**
+		/**è
 		 * Open a transaction
 		 */
-		EntityTransaction tx = manager.getTransaction();
-		tx.begin();
 
 		/**
 		 * Create entities Employees and Departments (instanciate jobs objects +
 		 * persistance O/R : create a recording in the DB)
 		 */
-		try {
-			test.createUsers();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
-//		test.createUsers();
-
-		/**
-		 * Close the transaction
-		 */
-		tx.commit();
 
 		/**
 		 * Test queries with the implemented methods form JpaTest class
@@ -73,24 +61,44 @@ public class JpaTest {
 	 * Create job datas
 	 */
 	private void createUsers() {
-		int numOfUsers = manager.createQuery("Select u From User u", User.class).getResultList().size();
-		if (numOfUsers == 0) {
+		EntityTransaction tx = manager.getTransaction();
+		tx.begin();
+		
+		try {
+			User user1 = new User();			
+			user1.setFirstName("Toto");
+			Sport sport1 = new Sport();
+			sport1.setName("Tennis");
+			sport1.setDescription("Raquettes et balles jaunes");
+			user1.addSport(sport1);
+			user1.setLastName("Tutu");
+			user1.setEmail("toto@email.fr");
 
-//			User user1 = new User();			
-//			user1.setEmail("user@email.fr");
-//			Sport sport1 = new Sport();
-//			sport1.setName("Tennis");
-//			user1.addSport(sport1);
-			manager.persist(new User());
-//			manager.persist(sport1);
+			manager.persist(user1);
+			manager.persist(sport1);
 			
+		} catch (Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+		}
+
+		/**
+		 * Close the transaction
+		 */
+		tx.commit();
+	
+		
+//		int numOfUsers = manager.createQuery("Select u From User u", User.class).getResultList().size();
+//		if (numOfUsers == 0) {
+//			manager.persist(new User());
+//			manager.persist(sport1);			
 //			manager.persist(new Employee("Jakab Gipsz", department1));
 //			manager.persist(new Employee("Captain Nemo", department1));
 //			manager.persist(new Employee("Tintin", department2));
 //			manager.persist(new Employee("Milou", department2));
 //			manager.persist(new Employee("Bill", department3));
 //			manager.persist(new Employee("Bill", department1));
-		}
+//		}
 	}
 
 	/**
