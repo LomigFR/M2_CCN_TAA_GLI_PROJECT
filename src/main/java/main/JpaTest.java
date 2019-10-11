@@ -27,10 +27,10 @@ public class JpaTest {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("mysql");
 		EntityManager manager = factory.createEntityManager();
 
-		JpaTest test = new JpaTest(manager);
+		JpaTest test = new JpaTest(manager);	
 		test.createUsers();
 
-		/**è
+		/**
 		 * Open a transaction
 		 */
 
