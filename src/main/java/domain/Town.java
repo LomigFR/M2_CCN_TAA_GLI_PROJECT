@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Town {
+public class Town extends GenericEntity {
 
 	private int id;
 	private Department department;
@@ -18,15 +18,6 @@ public class Town {
 	private List<User> listOfUsers = new ArrayList<User>();
 
 	public Town() {}
-
-	/**
-	 * @return the id
-	 */
-	@Id
-	@GeneratedValue
-	public int getId() {
-		return id;
-	}
 
 	/**
 	 * @param id the id to set

@@ -4,16 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
-public class User {
+public class User extends GenericEntity {
 
 	private int id;
-	private String lastName;
+	private String name;
 	private String firstName;
 	private String login;
 	private String password;
@@ -23,36 +20,6 @@ public class User {
 	private List<domain.Preference> listOfConstraints = new ArrayList<domain.Preference>();
 
 	public User() {}
-
-	/**
-	 * @return the id
-	 */
-	@Id
-	@GeneratedValue
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	/**
-	 * @return the lastName
-	 */
-	public String getLastName() {
-		return lastName;
-	}
-
-	/**
-	 * @param lastName the lastName to set
-	 */
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
 
 	/**
 	 * @return the firstName

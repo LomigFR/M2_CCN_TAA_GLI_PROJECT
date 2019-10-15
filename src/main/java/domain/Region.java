@@ -10,22 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Region {
+public class Region extends GenericEntity{
 
 	private int id;
 	private String name;
 	private List<Department> listOfDepartments = new ArrayList<Department>();
 
 	public Region() {}
-
-	/**
-	 * @return the id
-	 */
-	@Id
-	@GeneratedValue
-	public int getId() {
-		return id;
-	}
 
 	/**
 	 * @param id the id to set

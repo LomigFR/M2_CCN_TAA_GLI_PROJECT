@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
-public class Sport {
+public class Sport extends GenericEntity {
 
 	private int id;
 	private String name;
@@ -19,15 +19,6 @@ public class Sport {
 	private List<User> listOfUsers = new ArrayList<User>();
 
 	public Sport() {}
-
-	/**
-	 * @return the id
-	 */
-	@Id
-	@GeneratedValue
-	public int getId() {
-		return id;
-	}
 
 	/**
 	 * @param id the id to set

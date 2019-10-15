@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Department {
+public class Department extends GenericEntity{
 
 	private Region region;
 	private int id;
@@ -19,15 +19,6 @@ public class Department {
 	private List<Town> listOfTowns = new ArrayList<Town>();
 
 	public Department() {}
-
-	/**
-	 * @return the id
-	 */
-	@Id
-	@GeneratedValue
-	public int getId() {
-		return id;
-	}
 
 	/**
 	 * @param id the id to set

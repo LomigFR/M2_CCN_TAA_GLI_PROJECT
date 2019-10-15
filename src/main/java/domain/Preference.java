@@ -1,12 +1,10 @@
 package domain;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Preference {
+public class Preference extends GenericEntity{
 
 	private int id;
 	private String name;
@@ -18,15 +16,6 @@ public class Preference {
 	private User user;
 
 	public Preference() {}
-
-	/**
-	 * @return the id
-	 */
-	@Id
-	@GeneratedValue
-	public int getId() {
-		return id;
-	}
 
 	/**
 	 * @param id the id to set
