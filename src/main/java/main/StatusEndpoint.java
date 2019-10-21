@@ -2,6 +2,7 @@ package main;
 
 import domain.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -75,9 +76,19 @@ public class StatusEndpoint {
     	dto.name = us.getName();
     	dto.firstName = us.getFirstName();
     	dto.email = us.getEmail();
-    	dto.listOfFavoriteSports = us.getListOfFavoriteSports();
-    	dto.listOfFavoriteTowns = us.getListOfFavoriteTowns();
-    	dto.listOfConstraints = us.getListOfConstraints();
+    	List<Sport> listOfFavoriteSports = us.getListOfFavoriteSports();
+    	List<String> listOfFavoriteSportsName = new ArrayList<String>();
+    	for(Sport sport : listOfFavoriteSports) {
+    		listOfFavoriteSportsName.add(sport.getName());
+    	}
+    	dto.listOfFavoriteSports = listOfFavoriteSportsName;
+    	List<Town> listOfFavoriteTowns = us.getListOfFavoriteTowns();
+    	List<String> listOfFavoriteTownsName = new ArrayList<String>();
+    	for(Town town : listOfFavoriteTowns) {
+    		listOfFavoriteTownsName.add(town.getName());
+    	}
+    	dto.listOfFavoriteTowns = listOfFavoriteTownsName;
+    	dto.listOfConstraints = us.getListOfPreferences();
     	
     	return dto;
     }

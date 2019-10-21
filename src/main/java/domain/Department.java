@@ -14,18 +14,13 @@ import javax.persistence.OneToOne;
 public class Department extends GenericEntity{
 
 	private Region region;
-	private int id;
+	private Long id;
 	private String name;
 	private List<Town> listOfTowns = new ArrayList<Town>();
 
 	public Department() {}
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 
 	/**
 	 * @return the name
@@ -69,5 +64,9 @@ public class Department extends GenericEntity{
 	 */
 	public void setRegion(Region region) {
 		this.region = region;
+	}
+	
+	public void addTown(Town town) {
+		listOfTowns.add(town);
 	}
 }

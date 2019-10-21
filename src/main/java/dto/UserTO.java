@@ -8,7 +8,7 @@ import domain.Preference;
 
 public class UserTO {
 
-	public int id;
+	public Long id;
 	
 	public String name;
 	
@@ -16,9 +16,10 @@ public class UserTO {
 	
 	public String email;
 	
-	public List<Sport> listOfFavoriteSports;
+	//public List<Sport> listOfFavoriteSports;
+	public List<String> listOfFavoriteSports;
 	
-	public List<Town> listOfFavoriteTowns;
+	public List<String> listOfFavoriteTowns;
 	
 	public List<Preference> listOfConstraints;
 }
