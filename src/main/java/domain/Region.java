@@ -12,18 +12,12 @@ import javax.persistence.OneToMany;
 @Entity
 public class Region extends GenericEntity{
 
-	private int id;
+	private Long id;
 	private String name;
 	private List<Department> listOfDepartments = new ArrayList<Department>();
 
 	public Region() {}
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	/**
 	 * @return the name
@@ -52,5 +46,9 @@ public class Region extends GenericEntity{
 	 */
 	public void setListOfDepartments(List<Department> listOfDepartments) {
 		this.listOfDepartments = listOfDepartments;
+	}
+	
+	public void addDep(Department dep) {
+		listOfDepartments.add(dep);
 	}
 }

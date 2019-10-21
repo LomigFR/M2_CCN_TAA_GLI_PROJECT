@@ -2,16 +2,19 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
 public class Town extends GenericEntity {
 
-	private int id;
+	private Long id;
 	private Department department;
 	private String name;
 	private List<Sport> listOfSports = new ArrayList<Sport>();
@@ -19,12 +22,6 @@ public class Town extends GenericEntity {
 
 	public Town() {}
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	/**
 	 * @return the department
@@ -58,7 +55,7 @@ public class Town extends GenericEntity {
 	/**
 	 * @return the listOfSports
 	 */
-	@OneToMany
+	@ManyToMany(mappedBy="listOfTowns", cascade = CascadeType.PERSIST)
 	public List<Sport> getListOfSports() {
 		return listOfSports;
 	}
@@ -73,7 +70,7 @@ public class Town extends GenericEntity {
 	/**
 	 * @return the listOfUsers
 	 */
-	@OneToMany
+	@ManyToMany(mappedBy="listOfFavoriteTowns", cascade = CascadeType.PERSIST)
 	public List<User> getListOfUsers() {
 		return listOfUsers;
 	}

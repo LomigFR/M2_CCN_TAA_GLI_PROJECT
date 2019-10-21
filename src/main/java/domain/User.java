@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
 public class User extends GenericEntity {
 
-	private int id;
+	private Long id;
 	private String name;
 	private String firstName;
 	private String login;
@@ -17,7 +18,7 @@ public class User extends GenericEntity {
 	private String email;
 	private List<Sport> listOfFavoriteSports = new ArrayList<Sport>();
 	private List<Town> listOfFavoriteTowns = new ArrayList<Town>();
-	private List<domain.Preference> listOfConstraints = new ArrayList<domain.Preference>();
+	private List<domain.Preference> listOfPreferences = new ArrayList<domain.Preference>();
 
 	public User() {}
 
@@ -80,7 +81,7 @@ public class User extends GenericEntity {
 	/**
 	 * @return the listOfFavoriteSports
 	 */
-	@OneToMany
+	@ManyToMany
 	public List<Sport> getListOfFavoriteSports() {
 		return listOfFavoriteSports;
 	}
@@ -95,7 +96,7 @@ public class User extends GenericEntity {
 	/**
 	 * @return the listOfFavoriteTowns
 	 */
-	@OneToMany
+	@ManyToMany
 	public List<Town> getListOfFavoriteTowns() {
 		return listOfFavoriteTowns;
 	}
@@ -111,15 +112,15 @@ public class User extends GenericEntity {
 	 * @return the listOfConstraints
 	 */
 	@OneToMany
-	public List<domain.Preference> getListOfConstraints() {
-		return listOfConstraints;
+	public List<domain.Preference> getListOfPreferences() {
+		return listOfPreferences;
 	}
 
 	/**
 	 * @param listOfConstraints the listOfConstraints to set
 	 */
-	public void setListOfConstraints(List<domain.Preference> listOfConstraints) {
-		this.listOfConstraints = listOfConstraints;
+	public void setListOfPreferences(List<domain.Preference> listOfPreferences) {
+		this.listOfPreferences = listOfPreferences;
 	}
 	
 	/**
@@ -128,5 +129,21 @@ public class User extends GenericEntity {
 	 */
 	public void addSport(Sport sport) {
 		listOfFavoriteSports.add(sport);
+	}
+	
+	/**
+	 * 
+	 * @param pref
+	 */
+	public void addPreference(Preference preference) {
+		listOfPreferences.add(preference);
+	}
+	
+	/**
+	 * 
+	 * @param town
+	 */
+	public void addTown(Town town) {
+		listOfFavoriteTowns.add(town);
 	}
 }
