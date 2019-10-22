@@ -11,7 +11,15 @@ import javax.persistence.OneToMany;
 public class User extends GenericEntity {
 
 	private Long id;
-	private String name;
+	private String nama;
+	public String getNama() {
+		return nama;
+	}
+
+	public void setNama(String nama) {
+		this.nama = nama;
+	}
+
 	private String firstName;
 	private String login;
 	private String password;
@@ -21,6 +29,12 @@ public class User extends GenericEntity {
 	private List<domain.Preference> listOfPreferences = new ArrayList<domain.Preference>();
 
 	public User() {}
+	
+	public User(String name, String firstName, String email) {
+		this.nama = name;
+		this.firstName = firstName;
+		this.email = email;
+	}
 
 	/**
 	 * @return the firstName

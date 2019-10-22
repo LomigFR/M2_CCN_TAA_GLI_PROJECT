@@ -16,7 +16,7 @@ public abstract class GenericDAO<T extends GenericEntity> implements IDAO<T> {
 
 	protected abstract Class<T> getEntityType();
 
-	public T findById(long id) {
+	public T findById(Long id) {
 		T entity = em.find(getEntityType(), id);
 		if (entity == null) {
 			throw new NotFoundException();
@@ -24,7 +24,7 @@ public abstract class GenericDAO<T extends GenericEntity> implements IDAO<T> {
 		return entity;
 	}
 
-	public void delete(int id) {
+	public void delete(Long id) {
 		EntityManagerHelper.beginTransaction();
 		T entity = findById(id);
 		em.remove(entity);
@@ -35,8 +35,10 @@ public abstract class GenericDAO<T extends GenericEntity> implements IDAO<T> {
 	public T save(T t) {
 		EntityManagerHelper.beginTransaction();
 		if (t.getId() != 0) {
+			//em.merge(t);
 			EntityManagerHelper.getEntityManager().merge(t);
 		} else {
+			//em.persist(t);
 			EntityManagerHelper.getEntityManager().persist(t);
 		}
 		EntityManagerHelper.commit();

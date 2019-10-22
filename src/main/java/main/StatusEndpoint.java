@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -52,6 +54,38 @@ public class StatusEndpoint {
 		
 		return daoEmp.findById(1L).getName();*/
     }
+    
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createUser(UserTO uTO) {
+    	User us = new User(uTO.name, uTO.firstName, uTO.email);
+    	UserDAOImpl userdao = new UserDAOImpl();
+    	us = userdao.save(us);
+    	return Response.status(Response.Status.CREATED).entity(createUserTO(us)).build();
+    }
+    
+    @DELETE
+    @Path("{id}")
+    public Response removeUser(@PathParam("id") Long eId) {
+    	UserDAOImpl userdao = new UserDAOImpl();
+    	userdao.delete(eId);
+    	return Response.noContent().build();
+    }
+    
+    @PUT
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response modifyUser(@PathParam("id") Long eId, UserTO uTO) {
+    	UserDAOImpl userdao = new UserDAOImpl();
+    	User us = userdao.findById(eId);
+    	if(!checkEmpty(uTO.name)) {
+    		us.setNama(uTO.name);
+    	}
+    	us = userdao.save(us);
+    	return Response.status(Response.Status.OK).entity(createUserTO(us)).build();
+    }
 
     /*@GET
     @Path("/person")
@@ -73,7 +107,7 @@ public class StatusEndpoint {
     public UserTO createUserTO(User us) {
     	UserTO dto = new UserTO();
     	dto.id = us.getId();
-    	dto.name = us.getName();
+    	dto.name = us.getNama();
     	dto.firstName = us.getFirstName();
     	dto.email = us.getEmail();
     	List<Sport> listOfFavoriteSports = us.getListOfFavoriteSports();
@@ -91,6 +125,10 @@ public class StatusEndpoint {
     	dto.listOfConstraints = us.getListOfPreferences();
     	
     	return dto;
+    }
+    
+    public static boolean checkEmpty(String string) {
+    	return string == null || string.trim().isEmpty();
     }
 
 }
