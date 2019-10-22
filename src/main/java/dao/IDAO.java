@@ -10,9 +10,9 @@ package dao;
  */
 public interface IDAO<T> {
 
-	T findById(long id);
+	T findById(Long id);
 
 	T save(T object);
 
-	void delete(int id);
+	void delete(Long id);
 }
