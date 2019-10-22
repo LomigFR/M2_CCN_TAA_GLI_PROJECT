@@ -1,7 +1,5 @@
 package main;
 
-import domain.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -18,6 +16,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import dao.impl.UserDAOImpl;
+import domain.Sport;
+import domain.Town;
+import domain.User;
 import dto.UserTO;
 
 
@@ -61,7 +62,7 @@ public class StatusEndpoint {
     public Response createUser(UserTO uTO) {
     	User us = new User(uTO.name, uTO.firstName, uTO.email);
     	UserDAOImpl userdao = new UserDAOImpl();
-    	us = userdao.save(us);
+    	us = userdao.save((User) us);
     	return Response.status(Response.Status.CREATED).entity(createUserTO(us)).build();
     }
     
