@@ -131,5 +131,4 @@ public class StatusEndpoint {
     public static boolean checkEmpty(String string) {
     	return string == null || string.trim().isEmpty();
     }
-
 }
