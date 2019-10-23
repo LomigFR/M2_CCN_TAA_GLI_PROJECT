@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.ws.rs.NotFoundException;
 
@@ -12,6 +14,8 @@ import main.EntityManagerHelper;
  */
 public abstract class GenericDAO<T extends GenericEntity> implements IDAO<T> {
 
+	GenericEntity entity;
+	
 	protected EntityManager em = EntityManagerHelper.getEntityManager();
 
 	protected abstract Class<T> getEntityType();
@@ -43,5 +47,11 @@ public abstract class GenericDAO<T extends GenericEntity> implements IDAO<T> {
 		}
 		EntityManagerHelper.commit();
 		return t;
+	}
+	
+	public List<T> findAll() {
+		String s = "select u from "+ entity.getClass()+" as u";
+		return EntityManagerHelper.getEntityManager().createQuery(s, getEntityType())
+				.getResultList();
 	}
 }
