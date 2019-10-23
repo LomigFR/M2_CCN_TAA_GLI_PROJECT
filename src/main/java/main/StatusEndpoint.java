@@ -21,15 +21,26 @@ import dao.impl.UserDAOImpl;
 import dto.UserTO;
 
 
-@Path("/apiwe")
+@Path("/users")
 public class StatusEndpoint {
 
     private static final Logger logger = Logger.getLogger(StatusEndpoint.class.getName());
 
+//    @GET
+//    public Response getStatus() {
+//
+//        return Response.status(Response.Status.OK).entity("c'est bon yo!").build();
+//    }
+    
     @GET
-    public Response getStatus() {
-
-        return Response.status(Response.Status.OK).entity("c'est bon yo!").build();
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<UserTO>  getAllUsers(){
+    	List<UserTO> users = new ArrayList<UserTO>();
+    	UserDAOImpl userdao = new UserDAOImpl();
+    	for(User u : userdao.findAll()) {
+    		users.add(createUserTO(u));
+    	}
+    	return users;
     }
     
     @GET
