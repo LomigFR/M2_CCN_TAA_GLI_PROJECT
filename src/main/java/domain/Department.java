@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -19,8 +20,6 @@ public class Department extends GenericEntity{
 	private List<Town> listOfTowns = new ArrayList<Town>();
 
 	public Department() {}
-
-	
 
 	/**
 	 * @return the name
@@ -39,7 +38,7 @@ public class Department extends GenericEntity{
 	/**
 	 * @return the listOfTowns
 	 */
-	@OneToMany(mappedBy = "department", cascade = CascadeType.PERSIST)
+	@OneToMany/*(mappedBy = "department", cascade = CascadeType.PERSIST)*/
 	public List<Town> getListOfTowns() {
 		return listOfTowns;
 	}

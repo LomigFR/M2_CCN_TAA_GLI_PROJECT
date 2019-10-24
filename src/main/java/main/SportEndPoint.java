@@ -28,14 +28,13 @@ public class SportEndPoint {
 
 	@GET
 	public Response getStatus() {
-
-		return Response.status(Response.Status.OK).entity("Ok pour les sports").build();
+		return Response.status(Response.Status.OK).entity("Ok pour les sports !").build();
 	}
 
 	@GET
 	@Path("/test")
 	public String helloWorld() {
-		return "Ok pour Hello World !";
+		return "Ok pour Hello World SPORT !";
 	}
 
 	@GET

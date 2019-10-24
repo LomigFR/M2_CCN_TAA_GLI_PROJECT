@@ -14,7 +14,7 @@ public class TestApplication extends Application{
 
 	        clazzes.add(StatusEndpoint.class);
 	        clazzes.add(SportEndPoint.class);
-
+	        clazzes.add(TownEndPoint.class);
 	        return clazzes;
 	}
 }

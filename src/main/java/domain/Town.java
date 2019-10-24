@@ -55,7 +55,7 @@ public class Town extends GenericEntity {
 	/**
 	 * @return the listOfSports
 	 */
-	@ManyToMany(mappedBy="listOfTowns", cascade = CascadeType.PERSIST)
+	@ManyToMany/*(mappedBy="listOfTowns", cascade = CascadeType.PERSIST)*/
 	public List<Sport> getListOfSports() {
 		return listOfSports;
 	}
@@ -70,7 +70,7 @@ public class Town extends GenericEntity {
 	/**
 	 * @return the listOfUsers
 	 */
-	@ManyToMany(mappedBy="listOfFavoriteTowns", cascade = CascadeType.PERSIST)
+	@ManyToMany/*(mappedBy="listOfFavoriteTowns", cascade = CascadeType.PERSIST)*/
 	public List<User> getListOfUsers() {
 		return listOfUsers;
 	}

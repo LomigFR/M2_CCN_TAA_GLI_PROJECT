@@ -36,8 +36,8 @@ public class StatusEndpoint {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<UserTO>  getAllUsers(){
-    	List<UserTO> users = new ArrayList<UserTO>();
     	UserDAOImpl userdao = new UserDAOImpl();
+    	List<UserTO> users = new ArrayList<UserTO>();
     	for(User u : userdao.findAll()) {
     		users.add(createUserTO(u));
     	}
@@ -47,7 +47,6 @@ public class StatusEndpoint {
     @GET
     @Path("/test")
     public String helloWorld() {
-
         return "ca aussi ca marche!";
     }
     

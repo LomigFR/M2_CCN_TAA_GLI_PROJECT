@@ -14,8 +14,8 @@ import main.EntityManagerHelper;
  */
 public abstract class GenericDAO<T extends GenericEntity> implements IDAO<T> {
 
-	GenericEntity entity;
-	
+//	GenericEntity entity;
+
 	protected EntityManager em = EntityManagerHelper.getEntityManager();
 
 	protected abstract Class<T> getEntityType();
@@ -39,19 +39,21 @@ public abstract class GenericDAO<T extends GenericEntity> implements IDAO<T> {
 	public T save(T t) {
 		EntityManagerHelper.beginTransaction();
 		if (t.getId() != 0) {
-			//em.merge(t);
+			// em.merge(t);
 			EntityManagerHelper.getEntityManager().merge(t);
 		} else {
-			//em.persist(t);
+			// em.persist(t);
 			EntityManagerHelper.getEntityManager().persist(t);
 		}
 		EntityManagerHelper.commit();
 		return t;
 	}
-	
-	public List<T> findAll() {
-		String s = "select u from "+ entity.getClass()+" as u";
-		return EntityManagerHelper.getEntityManager().createQuery(s, getEntityType())
+
+	public List<T> findAll(GenericEntity entity) {
+		String s = "select x from " + entity.getClass().getName() + " as x";
+		return EntityManagerHelper
+				.getEntityManager()
+				.createQuery(s, getEntityType())
 				.getResultList();
 	}
 }

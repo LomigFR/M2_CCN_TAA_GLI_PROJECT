@@ -16,7 +16,6 @@ public class UserTO {
 	
 	public String email;
 	
-	//public List<Sport> listOfFavoriteSports;
 	public List<String> listOfFavoriteSports;
 	
 	public List<String> listOfFavoriteTowns;
