@@ -11,13 +11,13 @@ import javax.persistence.OneToMany;
 public class User extends GenericEntity {
 
 	private Long id;
-	private String nama;
-	public String getNama() {
-		return nama;
+	private String name;
+	public String getName() {
+		return name;
 	}
 
-	public void setNama(String nama) {
-		this.nama = nama;
+	public void setNama(String name) {
+		this.name = name;
 	}
 
 	private String firstName;
@@ -26,12 +26,12 @@ public class User extends GenericEntity {
 	private String email;
 	private List<Sport> listOfFavoriteSports = new ArrayList<Sport>();
 	private List<Town> listOfFavoriteTowns = new ArrayList<Town>();
-	private List<domain.Preference> listOfPreferences = new ArrayList<domain.Preference>();
+	private List<Preference> listOfPreferences = new ArrayList<Preference>();
 
 	public User() {}
 	
 	public User(String name, String firstName, String email) {
-		this.nama = name;
+		this.name = name;
 		this.firstName = firstName;
 		this.email = email;
 	}
@@ -126,14 +126,14 @@ public class User extends GenericEntity {
 	 * @return the listOfConstraints
 	 */
 	@OneToMany
-	public List<domain.Preference> getListOfPreferences() {
+	public List<Preference> getListOfPreferences() {
 		return listOfPreferences;
 	}
 
 	/**
 	 * @param listOfConstraints the listOfConstraints to set
 	 */
-	public void setListOfPreferences(List<domain.Preference> listOfPreferences) {
+	public void setListOfPreferences(List<Preference> listOfPreferences) {
 		this.listOfPreferences = listOfPreferences;
 	}
 	

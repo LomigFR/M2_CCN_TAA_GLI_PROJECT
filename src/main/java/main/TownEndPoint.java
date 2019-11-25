@@ -34,7 +34,7 @@ public class TownEndPoint {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("test")
+	@Path("/test")
 	public Response helloWorld() {
 		String helloWorld = "Ok pour Hello World TOWN !";
 		return Response.status(Response.Status.OK).entity(helloWorld).build();
@@ -78,18 +78,13 @@ public class TownEndPoint {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public /*Response*/ List<TownTO> getAllTowns() {
+	public List<TownTO> getAllTowns() {
 		IDAO<Town> townDao = new TownDAOImpl();
 		List<TownTO> listOfTowns = new ArrayList<TownTO>();
-		
-		/**
-		 * TODO : exploitation de la généricité à peaufiner !
-		 */
 		for(Town town : townDao.findAll(new Town())) {
 			listOfTowns.add(createTownTO(town));
 		}
 		return listOfTowns;
-//		return Response.status(Response.Status.OK).entity(listOfTowns).build();
 	}
 	
 	@POST
@@ -125,8 +120,7 @@ public class TownEndPoint {
 		if (!checkEmpty(townTo.name)) {
 			town.setName(townTo.name);
 		}
-		townDao.save(town);
-//		town = townDao.save(town);
+		town = townDao.save(town);
 		return Response.status(Response.Status.OK).entity(createTownTO(town)).build();
 	}
 

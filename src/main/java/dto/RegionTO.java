@@ -8,5 +8,5 @@ public class RegionTO {
 
 	public Long id;
 	public String name;
-	public List<Department> listOfDepartments = new ArrayList<Department>();
+	public List<String> listOfDepartments = new ArrayList<String>();
 }

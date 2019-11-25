@@ -118,7 +118,7 @@ public class StatusEndpoint {
     public UserTO createUserTO(User us) {
     	UserTO dto = new UserTO();
     	dto.id = us.getId();
-    	dto.name = us.getNama();
+    	dto.name = us.getName();
     	dto.firstName = us.getFirstName();
     	dto.email = us.getEmail();
     	List<Sport> listOfFavoriteSports = us.getListOfFavoriteSports();
@@ -133,7 +133,7 @@ public class StatusEndpoint {
     		listOfFavoriteTownsName.add(town.getName());
     	}
     	dto.listOfFavoriteTowns = listOfFavoriteTownsName;
-    	dto.listOfConstraints = us.getListOfPreferences();
+    	dto.listOfPreferences = us.getListOfPreferences();
     	
     	return dto;
     }

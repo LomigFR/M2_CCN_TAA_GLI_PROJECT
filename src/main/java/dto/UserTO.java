@@ -20,5 +20,5 @@ public class UserTO {
 	
 	public List<String> listOfFavoriteTowns;
 	
-	public List<Preference> listOfConstraints;
+	public List<Preference> listOfPreferences;
 }
