@@ -3,6 +3,11 @@
  */
 package dao;
 
+import java.util.List;
+
+import domain.GenericEntity;
+import domain.Sport;
+
 /**
  * @author guillaume_collet
  * @param <T>
@@ -10,9 +15,11 @@ package dao;
  */
 public interface IDAO<T> {
 
-	T findById(long id);
+	T findById(Long id);
 
 	T save(T object);
 
-	void delete(int id);
+	void delete(Long id);
+
+	List<T> findAll(GenericEntity entity);
 }

@@ -1,12 +1,14 @@
 package domain;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
 public class Preference extends GenericEntity{
 
-	private int id;
+	private Long id;
 	private String name;
 	private int swell;
 	private int minWindStrenght;
@@ -17,13 +19,7 @@ public class Preference extends GenericEntity{
 
 	public Preference() {}
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	
 	/**
 	 * @return the name
 	 */
@@ -111,7 +107,8 @@ public class Preference extends GenericEntity{
 	/**
 	 * @return the user
 	 */
-	@ManyToOne
+	@JsonIgnore
+	@OneToOne
 	public User getUser() {
 		return user;
 	}

@@ -4,22 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
 public class User extends GenericEntity {
 
-	private int id;
+	private Long id;
 	private String name;
+	public String getName() {
+		return name;
+	}
+
+	public void setNama(String name) {
+		this.name = name;
+	}
+
 	private String firstName;
 	private String login;
 	private String password;
 	private String email;
 	private List<Sport> listOfFavoriteSports = new ArrayList<Sport>();
 	private List<Town> listOfFavoriteTowns = new ArrayList<Town>();
-	private List<domain.Preference> listOfConstraints = new ArrayList<domain.Preference>();
+	private List<Preference> listOfPreferences = new ArrayList<Preference>();
 
 	public User() {}
+	
+	public User(String name, String firstName, String email) {
+		this.name = name;
+		this.firstName = firstName;
+		this.email = email;
+	}
 
 	/**
 	 * @return the firstName
@@ -80,7 +95,7 @@ public class User extends GenericEntity {
 	/**
 	 * @return the listOfFavoriteSports
 	 */
-	@OneToMany
+	@ManyToMany
 	public List<Sport> getListOfFavoriteSports() {
 		return listOfFavoriteSports;
 	}
@@ -95,7 +110,7 @@ public class User extends GenericEntity {
 	/**
 	 * @return the listOfFavoriteTowns
 	 */
-	@OneToMany
+	@ManyToMany
 	public List<Town> getListOfFavoriteTowns() {
 		return listOfFavoriteTowns;
 	}
@@ -111,15 +126,15 @@ public class User extends GenericEntity {
 	 * @return the listOfConstraints
 	 */
 	@OneToMany
-	public List<domain.Preference> getListOfConstraints() {
-		return listOfConstraints;
+	public List<Preference> getListOfPreferences() {
+		return listOfPreferences;
 	}
 
 	/**
 	 * @param listOfConstraints the listOfConstraints to set
 	 */
-	public void setListOfConstraints(List<domain.Preference> listOfConstraints) {
-		this.listOfConstraints = listOfConstraints;
+	public void setListOfPreferences(List<Preference> listOfPreferences) {
+		this.listOfPreferences = listOfPreferences;
 	}
 	
 	/**
@@ -128,5 +143,21 @@ public class User extends GenericEntity {
 	 */
 	public void addSport(Sport sport) {
 		listOfFavoriteSports.add(sport);
+	}
+	
+	/**
+	 * 
+	 * @param pref
+	 */
+	public void addPreference(Preference preference) {
+		listOfPreferences.add(preference);
+	}
+	
+	/**
+	 * 
+	 * @param town
+	 */
+	public void addTown(Town town) {
+		listOfFavoriteTowns.add(town);
 	}
 }

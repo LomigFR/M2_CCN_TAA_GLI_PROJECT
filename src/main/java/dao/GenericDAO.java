@@ -1,7 +1,6 @@
-/**
- * 
- */
 package dao;
+
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.ws.rs.NotFoundException;
@@ -15,11 +14,13 @@ import main.EntityManagerHelper;
  */
 public abstract class GenericDAO<T extends GenericEntity> implements IDAO<T> {
 
+//	GenericEntity entity;
+
 	protected EntityManager em = EntityManagerHelper.getEntityManager();
 
 	protected abstract Class<T> getEntityType();
 
-	public T findById(long id) {
+	public T findById(Long id) {
 		T entity = em.find(getEntityType(), id);
 		if (entity == null) {
 			throw new NotFoundException();
@@ -27,40 +28,32 @@ public abstract class GenericDAO<T extends GenericEntity> implements IDAO<T> {
 		return entity;
 	}
 
-	public void delete(int id) {
+	public void delete(Long id) {
 		EntityManagerHelper.beginTransaction();
-//		String query = "DELETE FROM Employee WHERE id = :id";
-//		if(!em.contains(t)) {
-//			t = em.merge(t);
-//		}
-//		em.createQuery(query, GenericEntity.class);
 		T entity = findById(id);
 		em.remove(entity);
 		EntityManagerHelper.getEntityManager().flush();
 		EntityManagerHelper.commit();
-//		return t;
 	}
 
 	public T save(T t) {
 		EntityManagerHelper.beginTransaction();
 		if (t.getId() != 0) {
+			// em.merge(t);
 			EntityManagerHelper.getEntityManager().merge(t);
 		} else {
+			// em.persist(t);
 			EntityManagerHelper.getEntityManager().persist(t);
 		}
 		EntityManagerHelper.commit();
 		return t;
 	}
 
-	public T changeName(T t, String newName) {
-		EntityManagerHelper.beginTransaction();
-		if (t.getId() != 0) {
-			t.setName(newName);
-			EntityManagerHelper.getEntityManager().merge(t);
-		} else {
-			EntityManagerHelper.getEntityManager().persist(t);
-		}
-		EntityManagerHelper.commit();
-		return t;
+	public List<T> findAll(GenericEntity entity) {
+		String s = "select x from " + entity.getClass().getName() + " as x";
+		return EntityManagerHelper
+				.getEntityManager()
+				.createQuery(s, getEntityType())
+				.getResultList();
 	}
 }
